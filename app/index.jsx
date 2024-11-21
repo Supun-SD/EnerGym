@@ -3,10 +3,11 @@ import { View, Text, ImageBackground } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
   return (
-    <View className="flex-1 bg-black">
+    <SafeAreaView className="flex-1 bg-primary">
       <ImageBackground
         source={require("../assets/images/landing.jpg")}
         className="flex-1 justify-end"
@@ -38,7 +39,7 @@ const Index = () => {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -4,6 +4,7 @@ import { store } from "../redux/store";
 import "../theme/global.css";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
+import Toast from "react-native-toast-message";
 
 export default function RootLayout() {
   const [fontsLoaded, error] = useFonts({
@@ -24,12 +25,15 @@ export default function RootLayout() {
   }
 
   return (
-    <Provider store={store}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="home" options={{ headerShown: false }} />
-      </Stack>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="home" options={{ headerShown: false }} />
+        </Stack>
+      </Provider>
+      <Toast />
+    </>
   );
 }

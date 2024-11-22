@@ -5,6 +5,7 @@ import CustomButton from "../../components/CustomButton";
 import { useState } from "react";
 import CustomInput from "../../components/CustomInput";
 import { LinearGradient } from "expo-linear-gradient";
+import Toast from "react-native-toast-message";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,6 +15,8 @@ const SignUp = () => {
   const [dob, setDob] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -42,9 +45,16 @@ const SignUp = () => {
     setErrors(formErrors);
 
     if (Object.keys(formErrors).length === 0) {
-      console.log("Registration successful!");
-      console.log("Username:", username);
-      console.log("Password:", password);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        router.back();
+        Toast.show({
+          type: "success",
+          text1: "Registration Successful!",
+          text2: "You have successfully registered. Welcome aboard!",
+        });
+      }, 1000);
     }
   };
 
@@ -132,7 +142,7 @@ const SignUp = () => {
                 containerStyles="rounded-3xl mt-8 mx-2"
                 textStyles="text-xl"
                 handlePress={handleRegister}
-                isLoading={false}
+                isLoading={isLoading}
               />
 
               <View className="flex-row items-center justify-center mt-8 mb-5">

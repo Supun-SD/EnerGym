@@ -6,15 +6,29 @@ import CustomButton from "../../components/CustomButton";
 import { useState } from "react";
 import CustomInput from "../../components/CustomInput";
 import { LinearGradient } from "expo-linear-gradient";
+import Toast from "react-native-toast-message";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
-    router.push("/home");
+    if (username === "" || password === "") {
+      Toast.show({
+        type: "error",
+        text1: "Missing Information",
+        text2: "Please enter both username and password to continue.",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push("/home");
+    }, 1000);
   };
 
   return (
@@ -66,7 +80,7 @@ const SignIn = () => {
               handlePress={() => {
                 handleLogin();
               }}
-              isLoading={false}
+              isLoading={isLoading}
             />
 
             <View className="flex-row items-center justify-center mt-8 mb-24">

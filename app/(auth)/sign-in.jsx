@@ -27,7 +27,12 @@ const SignIn = () => {
 
     setTimeout(() => {
       setIsLoading(false);
-      router.push("/home");
+      router.push({
+        pathname: "/home",
+        params: {
+          username: username,
+        },
+      });
     }, 1000);
   };
 

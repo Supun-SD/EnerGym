@@ -13,10 +13,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import ItemCard from "../components/ItemCard";
 import axios from "axios";
 import Toast from "react-native-toast-message";
+import { useLocalSearchParams } from "expo-router";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [exercises, setExercises] = useState([]);
+  const params = useLocalSearchParams();
 
   const clickCount = useSelector((state) => state.counter.value);
 
@@ -65,7 +67,9 @@ const Home = () => {
         <View className="flex-row items-center justify-between bg-primary px-6 py-8 rounded-[30px] mt-16 mx-8">
           <View>
             <Text className="text-white text-xl">{getGreetingMessage()}</Text>
-            <Text className="text-white text-4xl font-bold mt-1">SupunD</Text>
+            <Text className="text-white text-4xl font-bold mt-1">
+              {params.username}
+            </Text>
           </View>
           <View className="bg-gray-400 rounded-full w-16 h-16 flex items-center justify-center">
             <Image

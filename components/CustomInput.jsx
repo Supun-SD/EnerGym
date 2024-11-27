@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "react-native-elements";
-import { Text } from "react-native"; // Import Text component
+import { Text } from "react-native"; 
 
 const CustomInput = ({
   placeholder,
